@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: KalahGameRuleRunner</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.backbase.kalah.rule</a> ]
+</div>
+
+<h1>Coverage Summary for Class: KalahGameRuleRunner (com.backbase.kalah.rule)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KalahGameRuleRunner</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    65.2%
+  </span>
+  <span class="absValue">
+    (43/ 66)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.backbase.kalah.rule;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.backbase.kalah.exception.InvalidMoveException;
+<i>4</i>&nbsp;import com.backbase.kalah.model.Game;
+<i>5</i>&nbsp;import com.backbase.kalah.model.Pit;
+<i>6</i>&nbsp;import com.backbase.kalah.model.Player;
+<i>7</i>&nbsp;import com.backbase.kalah.util.Constants;
+<i>8</i>&nbsp;import lombok.extern.slf4j.Slf4j;
+<i>9</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>10</i>&nbsp;import org.springframework.stereotype.Component;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;/**
+<i>13</i>&nbsp; * KalahGameRuleRunner Class is to play the game by Kalah Rules
+<i>14</i>&nbsp; *
+<i>15</i>&nbsp; * @author Chandra Ranjan
+<i>16</i>&nbsp; * @since 05-12-2020
+<i>17</i>&nbsp; */
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;@Slf4j</b>
+<i>20</i>&nbsp;@Component
+<b class="fc"><i>21</i>&nbsp;public class KalahGameRuleRunner implements KalahGameRule{</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    /**
+<i>24</i>&nbsp;     * Main rule method to apply all the Kalah Rule to make the move
+<i>25</i>&nbsp;     *
+<i>26</i>&nbsp;     * @param pitId  pit id selected by the player
+<i>27</i>&nbsp;     * @param game  game object for which want to make move
+<i>28</i>&nbsp;     */
+<i>29</i>&nbsp;    @Override
+<i>30</i>&nbsp;    public void applyGameRule(Game game, Integer pitId ){
+<b class="fc"><i>31</i>&nbsp;        log.info(&quot;Distributing stones....&quot;);</b>
+<i>32</i>&nbsp;
+<b class="fc"><i>33</i>&nbsp;        if(isValiddMove(game,pitId )){</b>
+<b class="fc"><i>34</i>&nbsp;            applyStoneDistributionRule(game,pitId);</b>
+<b class="fc"><i>35</i>&nbsp;            applyGameFinishingRule(game);</b>
+<i>36</i>&nbsp;       }
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public void applyStoneDistributionRule(Game game, Integer pitId ){
+<b class="fc"><i>40</i>&nbsp;        log.info(&quot;Distributing stones....&quot;);</b>
+<i>41</i>&nbsp;
+<b class="fc"><i>42</i>&nbsp;        Pit pit = game.getGameBoard().getPit(pitId);</b>
+<b class="fc"><i>43</i>&nbsp;        Integer stonesInPit = pit.getNoOfStones();</b>
+<b class="fc"><i>44</i>&nbsp;        pit.setNoOfStones(0);</b>
+<b class="fc"><i>45</i>&nbsp;        for(int i=0; i&lt;stonesInPit; i++){</b>
+<b class="fc"><i>46</i>&nbsp;            Pit nextPit = game.getGameBoard().getPit(++pitId);</b>
+<b class="fc"><i>47</i>&nbsp;            nextPit.setNoOfStones(nextPit.getNoOfStones()+1);</b>
+<i>48</i>&nbsp;        }
+<b class="fc"><i>49</i>&nbsp;        log.info(&quot;Distribution Done.... Now checking if Move finish at player&#39;s empty pit....&quot;);</b>
+<b class="fc"><i>50</i>&nbsp;        applyMoveFinishingOwnEmptyPitRule(game,pitId);</b>
+<b class="fc"><i>51</i>&nbsp;        log.info(&quot;Setting next player turn..&quot;);</b>
+<b class="fc"><i>52</i>&nbsp;        applyNextPlayerTurnRule(game,pitId);</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;
+<i>56</i>&nbsp;    /**
+<i>57</i>&nbsp;     * Method to decide on player turn
+<i>58</i>&nbsp;     *
+<i>59</i>&nbsp;     * @param game game id
+<i>60</i>&nbsp;     */
+<i>61</i>&nbsp;    private void applyNextPlayerTurnRule(Game game, Integer pitId){
+<b class="fc"><i>62</i>&nbsp;        Pit pit = game.getGameBoard().getPit(pitId);</b>
+<b class="fc"><i>63</i>&nbsp;        if(pit.isKalahHouse()){</b>
+<b class="fc"><i>64</i>&nbsp;            if(pit.getOwner().equals(Player.PLAYER_ONE) &amp;&amp; game.getPlayerTurn().equals(Player.PLAYER_ONE))</b>
+<b class="fc"><i>65</i>&nbsp;                game.setPlayerTurn(Player.PLAYER_ONE);</b>
+<b class="nc"><i>66</i>&nbsp;            else if(pit.getOwner().equals(Player.PLAYER_TWO) &amp;&amp; game.getPlayerTurn().equals(Player.PLAYER_TWO))</b>
+<b class="nc"><i>67</i>&nbsp;                game.setPlayerTurn(Player.PLAYER_TWO);</b>
+<i>68</i>&nbsp;        }
+<i>69</i>&nbsp;        else{
+<b class="nc"><i>70</i>&nbsp;            if(game.getPlayerTurn().equals(Player.PLAYER_ONE))</b>
+<b class="nc"><i>71</i>&nbsp;                game.setPlayerTurn(Player.PLAYER_TWO);</b>
+<i>72</i>&nbsp;            else
+<b class="nc"><i>73</i>&nbsp;                game.setPlayerTurn(Player.PLAYER_ONE);</b>
+<i>74</i>&nbsp;        }
+<b class="fc"><i>75</i>&nbsp;        log.info(&quot;Next player turn set...&quot;);</b>
+<b class="fc"><i>76</i>&nbsp;    }</b>
+<i>77</i>&nbsp;
+<i>78</i>&nbsp;    /**
+<i>79</i>&nbsp;     * Method to check if last stone finish at any empty pit of same player
+<i>80</i>&nbsp;     * Takes all the stomes from opponent&#39;s pit and put them in his Kalah House
+<i>81</i>&nbsp;     * Also takes his single stone from his pit and put it into his Kalah House
+<i>82</i>&nbsp;     *
+<i>83</i>&nbsp;     * @param game current game
+<i>84</i>&nbsp;     * @param pitId last pit id of the move
+<i>85</i>&nbsp;     */
+<i>86</i>&nbsp;
+<i>87</i>&nbsp;    private void applyMoveFinishingOwnEmptyPitRule(Game game, int pitId) {
+<b class="fc"><i>88</i>&nbsp;        final Pit lastFilledPit = game.getGameBoard().getPit(pitId);</b>
+<b class="fc"><i>89</i>&nbsp;        if (!lastFilledPit.isKalahHouse()) {</b>
+<b class="nc"><i>90</i>&nbsp;            if (lastFilledPit.getOwner().equals(game.getPlayerTurn())) {</b>
+<b class="nc"><i>91</i>&nbsp;                if ((lastFilledPit.getNoOfStones() == 1)) {</b>
+<b class="nc"><i>92</i>&nbsp;                    final Pit complemetaryPit = game.getGameBoard().getPit(Constants.LAST_PIT_ID - lastFilledPit.getId());</b>
+<b class="nc"><i>93</i>&nbsp;                    if (complemetaryPit.getNoOfStones() &gt; 0) {</b>
+<b class="nc"><i>94</i>&nbsp;                        int pitOwnerHouseIndex = lastFilledPit.getOwner().equals(Player.PLAYER_ONE) ? Constants.PLAYER1_KALAH_HOUSE_PIT_ID : Constants.PLAYER2_KALAH_HOUSE_PIT_ID;</b>
+<b class="nc"><i>95</i>&nbsp;                        final Pit kahalHousePit = game.getGameBoard().getPit(pitOwnerHouseIndex);</b>
+<b class="nc"><i>96</i>&nbsp;                        kahalHousePit.setNoOfStones(</b>
+<b class="nc"><i>97</i>&nbsp;                                (kahalHousePit.getNoOfStones() + complemetaryPit.getNoOfStones()) + lastFilledPit.getNoOfStones());</b>
+<b class="nc"><i>98</i>&nbsp;                        complemetaryPit.setNoOfStones(0);</b>
+<b class="nc"><i>99</i>&nbsp;                        lastFilledPit.setNoOfStones(0);</b>
+<i>100</i>&nbsp;                    }
+<i>101</i>&nbsp;                }
+<i>102</i>&nbsp;            }
+<i>103</i>&nbsp;        }
+<b class="fc"><i>104</i>&nbsp;    }</b>
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    /**
+<i>107</i>&nbsp;     * Method to check after current move if game is finished or not
+<i>108</i>&nbsp;     * if finished then set the winner
+<i>109</i>&nbsp;     *
+<i>110</i>&nbsp;     * @param game current Game
+<i>111</i>&nbsp;     */
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;    public void applyGameFinishingRule(Game game) {
+<b class="fc"><i>114</i>&nbsp;        log.info(&quot;Checking if game is finished after current move...&quot;);</b>
+<b class="fc"><i>115</i>&nbsp;        int playerOnePitStones = game.getGameBoard().getPlayerPitsStones(Player.PLAYER_ONE);</b>
+<b class="fc"><i>116</i>&nbsp;        int playerTwoPitStones = game.getGameBoard().getPlayerPitsStones(Player.PLAYER_TWO);</b>
+<i>117</i>&nbsp;
+<b class="fc"><i>118</i>&nbsp;        if ((playerOnePitStones == 0) || (playerTwoPitStones == 0)) {</b>
+<b class="nc"><i>119</i>&nbsp;            Pit playerOneKalahPit = game.getGameBoard().getPit(Constants.PLAYER1_KALAH_HOUSE_PIT_ID);</b>
+<b class="nc"><i>120</i>&nbsp;            playerOneKalahPit.setNoOfStones(playerOneKalahPit.getNoOfStones()+playerOnePitStones);</b>
+<i>121</i>&nbsp;
+<b class="nc"><i>122</i>&nbsp;            Pit playerTwoKalahPit = game.getGameBoard().getPit(Constants.PLAYER2_KALAH_HOUSE_PIT_ID);</b>
+<b class="nc"><i>123</i>&nbsp;            playerTwoKalahPit.setNoOfStones(playerTwoKalahPit.getNoOfStones()+playerTwoPitStones);</b>
+<i>124</i>&nbsp;
+<b class="nc"><i>125</i>&nbsp;            log.info(&quot;Setting winner of the game...&quot;);</b>
+<b class="nc"><i>126</i>&nbsp;            if (playerOneKalahPit.getNoOfStones() &gt; playerTwoKalahPit.getNoOfStones())</b>
+<b class="nc"><i>127</i>&nbsp;                game.setWinner(Player.PLAYER_ONE);</b>
+<i>128</i>&nbsp;            else
+<b class="nc"><i>129</i>&nbsp;                game.setWinner(Player.PLAYER_TWO);</b>
+<i>130</i>&nbsp;        }
+<b class="fc"><i>131</i>&nbsp;    }</b>
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    /**
+<i>134</i>&nbsp;     * Method to check rule if move requestd by player is a valid one
+<i>135</i>&nbsp;     *
+<i>136</i>&nbsp;     *@param game current Game
+<i>137</i>&nbsp;     *@param pitId  pit id selected by the player
+<i>138</i>&nbsp;     *@return true or false
+<i>139</i>&nbsp;     */
+<i>140</i>&nbsp;    public boolean isValiddMove(Game game, Integer pitId){
+<b class="fc"><i>141</i>&nbsp;        log.debug(&quot;Making move for Game - {} by Player - {} with pit - {} &quot;,game.getId(),game.getPlayerTurn(),pitId);</b>
+<b class="fc"><i>142</i>&nbsp;        Pit pit = game.getGameBoard().getPit(pitId);</b>
+<b class="fc"><i>143</i>&nbsp;        log.info(&quot;Checking if its a valid move.&quot;);</b>
+<i>144</i>&nbsp;
+<b class="fc"><i>145</i>&nbsp;        if(pit.isKalahHouse()){</b>
+<b class="fc"><i>146</i>&nbsp;            throw new InvalidMoveException(&quot;ERR_KALAH_HOUSE_MOVE&quot;,&quot;Cannot move stone from Kalah House Pit&quot;);</b>
+<i>147</i>&nbsp;        }
+<b class="fc"><i>148</i>&nbsp;        if(pit.getOwner()!=game.getPlayerTurn()){</b>
+<b class="fc"><i>149</i>&nbsp;            throw new InvalidMoveException(&quot;ERR_KALAH_OPPONENT_PIT_MOVE&quot;,&quot;Cannot move stone from opponent&#39;s Pit&quot;);</b>
+<i>150</i>&nbsp;        }
+<b class="fc"><i>151</i>&nbsp;        if(pit.getNoOfStones()==0){</b>
+<b class="fc"><i>152</i>&nbsp;            throw new InvalidMoveException(&quot;ERR_KALAH_EMPTY_PIT_MOVE&quot;,&quot;Cannot move stone from empty Pit&quot;);</b>
+<i>153</i>&nbsp;        }
+<b class="fc"><i>154</i>&nbsp;        return true;</b>
+<i>155</i>&nbsp;    }
+<i>156</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-08 17:48</div>
+</div>
+</body>
+</html>

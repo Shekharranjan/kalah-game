@@ -1,0 +1,112 @@
+openapi: 3.0.1
+info:
+  description: APIs for the creation and play Kalah Game
+  version: 0.0.1
+  title: Backbase Kalah Game
+servers:
+  - url: 'http://localhost:8080'
+tags:
+  - name: kalah-game-controller
+    description: Kalah Game Controller
+paths:
+  /games:
+    post:
+      tags:
+        - kalah-game-controller
+      description: Endpoint to create New Kalah Game
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGame'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGameException'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGameException'
+      deprecated: false
+  '/games/{gameId}/pits/{pitId}':
+    put:
+      tags:
+        - kalah-game-controller
+      description: Endpoint to make move in the game and decide on winner.
+      parameters:
+        - name: gameId
+          in: path
+          description: gameId
+          required: true
+          schema:
+            type: string
+        - name: pitId
+          in: path
+          description: pitId
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGame'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGameException'
+        '404':
+          description: Game Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KalahGameException'
+      deprecated: false
+
+components:
+  schemas:
+    KalahGame:
+      type: object
+      properties:
+        id:
+          type: string
+          example: fcd780ff9f24c7c317c8937
+        playerTurn:
+          type: string
+          enum:
+            - PLAYER_ONE
+            - PLAYER_TWO
+        status:
+          type: object
+          example: {"1":6,"2":6,"3":6,"4":6,"5":6,"6":6,"7":0,"8":6,"9":6,"10":6,"11":6,"12":6,"13":6,"14":0}
+        uri:
+          type: string
+          example: http://localhost:8080/games/5fcd780ff9f24c7c317c8937
+        winner:
+          type: string
+          enum:
+            - PLAYER_ONE
+            - PLAYER_TWO
+      title: KalahGame
+
+    KalahGameException:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: ERR_GAME_NOT_FOUND
+        description:
+          type: string
+          example: Cannot find the game
+      title: KalahException

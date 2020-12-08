@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Board</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.backbase.kalah.model</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Board (com.backbase.kalah.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Board</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    68.8%
+  </span>
+  <span class="absValue">
+    (11/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.backbase.kalah.model;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.backbase.kalah.util.Constants;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;/**
+<i>9</i>&nbsp; * Class to present Kalah Game Board
+<i>10</i>&nbsp; *
+<i>11</i>&nbsp; * @author Chandra Ranjan
+<i>12</i>&nbsp; * @since 05-12-2020
+<i>13</i>&nbsp; */
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;public class Board {
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    private List&lt;Pit&gt; pits;
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;    public Board() {</b>
+<b class="fc"><i>20</i>&nbsp;        this.pits = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>21</i>&nbsp;        for (int i = Constants.START_PIT_ID; i &lt;= Constants.LAST_PIT_ID; i++) {</b>
+<b class="fc"><i>22</i>&nbsp;            this.pits.add(new Pit(i));</b>
+<i>23</i>&nbsp;        }
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;
+<b class="nc"><i>26</i>&nbsp;    public Board(List&lt;Pit&gt; pits) {</b>
+<b class="nc"><i>27</i>&nbsp;        this.pits = pits;</b>
+<b class="nc"><i>28</i>&nbsp;    }</b>
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public Pit getPit(final int index) {
+<b class="fc"><i>31</i>&nbsp;        return this.pits.get((index - 1) % Constants.LAST_PIT_ID);</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    public List&lt;Pit&gt; getPits() {
+<b class="fc"><i>35</i>&nbsp;        return pits;</b>
+<i>36</i>&nbsp;    }
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;    public void setPits(List&lt;Pit&gt; pits) {
+<b class="nc"><i>39</i>&nbsp;        this.pits = pits;</b>
+<b class="nc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public int getPlayerPitsStones(Player player) {
+<b class="fc"><i>43</i>&nbsp;        return this.getPits().stream()</b>
+<b class="fc"><i>44</i>&nbsp;                .filter(pit -&gt; (pit.getOwner().equals(player)))</b>
+<b class="fc"><i>45</i>&nbsp;                .filter(pit-&gt;!pit.isKalahHouse())</b>
+<b class="fc"><i>46</i>&nbsp;                .mapToInt(Pit::getNoOfStones).sum();</b>
+<i>47</i>&nbsp;    }
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-12-08 17:48</div>
+</div>
+</body>
+</html>
