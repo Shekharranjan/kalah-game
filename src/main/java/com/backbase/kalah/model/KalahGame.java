@@ -13,8 +13,8 @@ public class KalahGame {
     private final String id;
     private final String uri;
     private final Map<Integer, Integer> status;
-    private final  Player playerTurn;
-    private final  Player winner;
+    private final Player playerTurn;
+    private final Player winner;
 
     public KalahGame(String id, String uri, Map<Integer, Integer> status, Player playerTurn, Player winner) {
         this.id = id;

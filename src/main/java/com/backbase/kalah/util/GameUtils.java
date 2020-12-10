@@ -28,17 +28,18 @@ public class GameUtils {
      * Adaptor method to convert Game object to KalahGame Object
      *
      * @param game current game
-     * @param uri game url
+     * @param uri  game url
      * @return KalahGame object
      */
-    public KalahGame getKalahGame(Game game, String uri){
+    public KalahGame getKalahGame(Game game, String uri) {
         Map<Integer, Integer> status = game.getGameBoard().getPits().stream()
                 .collect(Collectors.toMap(Pit::getId, Pit::getNoOfStones));
-        return new KalahGame(game.getId(),uri, status, game.getPlayerTurn(),game.getWinner());
+        return new KalahGame(game.getId(), uri, status, game.getPlayerTurn(), game.getWinner());
     }
 
     /**
      * Method used to generate game url
+     *
      * @param gameId game id
      * @return game url
      */

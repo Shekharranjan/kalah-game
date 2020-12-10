@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class KalahServiceImpl implements KalahService{
+public class KalahServiceImpl implements KalahService {
 
     @Autowired
     KalahGameRepository kalahGameRepository;
@@ -32,8 +32,8 @@ public class KalahServiceImpl implements KalahService{
      * @return newly created Kalah Game
      */
     @Override
-    public Game createGame(){
-        return kalahGameRepository.save( new Game());
+    public Game createGame() {
+        return kalahGameRepository.save(new Game());
     }
 
     /**
@@ -45,21 +45,22 @@ public class KalahServiceImpl implements KalahService{
     @Override
     public Game loadGame(String gameId) {
         return kalahGameRepository.findById(gameId)
-                .orElseThrow(()->new GameNotFoundException("ERR_GAME_NOT_FOUND","Game "+gameId+" not found."));
+                .orElseThrow(() -> new GameNotFoundException("ERR_GAME_NOT_FOUND", "Game " + gameId + " not found."));
     }
 
     /**
      * Method to make move in the game
+     *
      * @param pitId  pit id selected by the player
      * @param gameId game id for which want to make move
      * @return current game status after the latest move
      */
     @Override
     public Game makeMove(String gameId, Integer pitId) {
-        log.info("Searching for game - {}",gameId);
+        log.info("Searching for game - {}", gameId);
         Game game = loadGame(gameId);
-        log.debug("Found game - {}",game.getId());
-        kalahGameRuleRunner.applyGameRule(game,pitId);
+        log.debug("Found game - {}", game.getId());
+        kalahGameRuleRunner.applyGameRule(game, pitId);
         return kalahGameRepository.save(game);
     }
 }

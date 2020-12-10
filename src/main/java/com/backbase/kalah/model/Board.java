@@ -27,8 +27,8 @@ public class Board {
         this.pits = pits;
     }
 
-    public Pit getPit(final int index) {
-        return this.pits.get((index - 1) % Constants.LAST_PIT_ID);
+    public Pit getPit(int pitIndex) {
+        return this.pits.get((pitIndex - 1) % Constants.LAST_PIT_ID);
     }
 
     public List<Pit> getPits() {
@@ -39,10 +39,16 @@ public class Board {
         this.pits = pits;
     }
 
+    /**
+     * Method to get total number of stones in player's pit
+     *
+     * @param player current Player
+     * @return total number of stones in his pit
+     */
     public int getPlayerPitsStones(Player player) {
         return this.getPits().stream()
                 .filter(pit -> (pit.getOwner().equals(player)))
-                .filter(pit->!pit.isKalahHouse())
+                .filter(pit -> !pit.isKalahHouse())
                 .mapToInt(Pit::getNoOfStones).sum();
     }
 }

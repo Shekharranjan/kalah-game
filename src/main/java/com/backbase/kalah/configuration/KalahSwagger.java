@@ -10,6 +10,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Collections;
+
 /**
  * Configuration class to enable Swagger Documentation for Kalah API
  *
@@ -24,14 +25,14 @@ public class KalahSwagger {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
                 .apis(RequestHandlerSelectors.basePackage("com.backbase.kalah.controller"))
-                .paths(PathSelectors.any()).build().apiInfo(getApiInfo());
+                .paths(PathSelectors.any()).build().apiInfo(getServiceDetail());
     }
 
-    private ApiInfo getApiInfo() {
+    private ApiInfo getServiceDetail() {
         return new ApiInfo(
                 "Backbase Kalah Game",
                 "APIs for the creation and play Kalah Game",
-                "0.0.1",
+                "1.0.0",
                 null,
                 null,
                 null,

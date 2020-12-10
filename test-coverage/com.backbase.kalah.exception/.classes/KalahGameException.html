@@ -74,31 +74,38 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.backbase.kalah.exception;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;public class KalahGameException extends RuntimeException {
-<i>4</i>&nbsp;
-<i>5</i>&nbsp;    private String errorCode;
-<i>6</i>&nbsp;    private String description;
-<i>7</i>&nbsp;
-<b class="fc"><i>8</i>&nbsp;    public KalahGameException(String errorCode, String description) {</b>
-<b class="fc"><i>9</i>&nbsp;        this.errorCode = errorCode;</b>
-<b class="fc"><i>10</i>&nbsp;        this.description = description;</b>
-<b class="fc"><i>11</i>&nbsp;    }</b>
-<i>12</i>&nbsp;
-<i>13</i>&nbsp;    public String getErrorCode() {
-<b class="fc"><i>14</i>&nbsp;        return errorCode;</b>
-<i>15</i>&nbsp;    }
-<i>16</i>&nbsp;
-<i>17</i>&nbsp;    public String getDescription() {
-<b class="fc"><i>18</i>&nbsp;        return description;</b>
-<i>19</i>&nbsp;    }
-<i>20</i>&nbsp;
-<i>21</i>&nbsp;}
+<i>3</i>&nbsp;/**
+<i>4</i>&nbsp; * Custom Exception class to handle Game related exceptions
+<i>5</i>&nbsp; *
+<i>6</i>&nbsp; * @author Chandra Ranjan
+<i>7</i>&nbsp; * @since 05-12-2020
+<i>8</i>&nbsp; */
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;public class KalahGameException extends RuntimeException {
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    private String errorCode;
+<i>13</i>&nbsp;    private String description;
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;    public KalahGameException(String errorCode, String description) {</b>
+<b class="fc"><i>16</i>&nbsp;        this.errorCode = errorCode;</b>
+<b class="fc"><i>17</i>&nbsp;        this.description = description;</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public String getErrorCode() {
+<b class="fc"><i>21</i>&nbsp;        return errorCode;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    public String getDescription() {
+<b class="fc"><i>25</i>&nbsp;        return description;</b>
+<i>26</i>&nbsp;    }
+<i>27</i>&nbsp;
+<i>28</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface KalahGameRepository extends MongoRepository<Game,String> {
+public interface KalahGameRepository extends MongoRepository<Game, String> {
 }

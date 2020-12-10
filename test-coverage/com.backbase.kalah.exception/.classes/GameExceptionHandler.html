@@ -53,7 +53,7 @@
     100%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (4/ 4)
   </span>
 </td>
 <td class="coverageStat">
@@ -61,7 +61,7 @@
     100%
   </span>
   <span class="absValue">
-    (3/ 3)
+    (4/ 4)
   </span>
 </td>
 </tr>
@@ -74,40 +74,43 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.backbase.kalah.exception;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import org.springframework.http.HttpStatus;
-<i>4</i>&nbsp;import org.springframework.web.bind.annotation.ControllerAdvice;
-<i>5</i>&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
-<i>6</i>&nbsp;import org.springframework.web.bind.annotation.ResponseBody;
-<i>7</i>&nbsp;import org.springframework.web.bind.annotation.ResponseStatus;
-<i>8</i>&nbsp;/**
-<i>9</i>&nbsp; * This class GameExceptionHandler is used to handle exception using AOP
-<i>10</i>&nbsp; *
-<i>11</i>&nbsp; * @author Chandra Ranjan
-<i>12</i>&nbsp; * @since 05-12-2020
-<i>13</i>&nbsp; */
-<i>14</i>&nbsp;@ControllerAdvice
-<b class="fc"><i>15</i>&nbsp;public class GameExceptionHandler {</b>
-<i>16</i>&nbsp;
-<i>17</i>&nbsp;    @ResponseBody
-<i>18</i>&nbsp;    @ExceptionHandler(GameNotFoundException.class)
-<i>19</i>&nbsp;    @ResponseStatus(HttpStatus.NOT_FOUND)
-<i>20</i>&nbsp;    GameException gameNotFoundHandler(GameNotFoundException ex) {
-<b class="fc"><i>21</i>&nbsp;        return new GameException(ex);</b>
-<i>22</i>&nbsp;    }
-<i>23</i>&nbsp;
-<i>24</i>&nbsp;    @ResponseBody
-<i>25</i>&nbsp;    @ExceptionHandler(InvalidMoveException.class)
-<i>26</i>&nbsp;    @ResponseStatus(HttpStatus.BAD_REQUEST)
-<i>27</i>&nbsp;    GameException invalidMoveHandler(InvalidMoveException ex) {
-<b class="fc"><i>28</i>&nbsp;        return new GameException(ex);</b>
-<i>29</i>&nbsp;    }
-<i>30</i>&nbsp;}
+<i>3</i>&nbsp;import lombok.extern.slf4j.Slf4j;
+<i>4</i>&nbsp;import org.springframework.http.HttpStatus;
+<i>5</i>&nbsp;import org.springframework.web.bind.annotation.ControllerAdvice;
+<i>6</i>&nbsp;import org.springframework.web.bind.annotation.ExceptionHandler;
+<i>7</i>&nbsp;import org.springframework.web.bind.annotation.ResponseBody;
+<i>8</i>&nbsp;import org.springframework.web.bind.annotation.ResponseStatus;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;/**
+<i>11</i>&nbsp; * This class GameExceptionHandler is used to handle exception using AOP
+<i>12</i>&nbsp; *
+<i>13</i>&nbsp; * @author Chandra Ranjan
+<i>14</i>&nbsp; * @since 05-12-2020
+<i>15</i>&nbsp; */
+<b class="fc"><i>16</i>&nbsp;@Slf4j</b>
+<i>17</i>&nbsp;@ControllerAdvice
+<b class="fc"><i>18</i>&nbsp;public class GameExceptionHandler {</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    @ResponseBody
+<i>21</i>&nbsp;    @ExceptionHandler(GameNotFoundException.class)
+<i>22</i>&nbsp;    @ResponseStatus(HttpStatus.NOT_FOUND)
+<i>23</i>&nbsp;    GameException gameNotFoundHandler(GameNotFoundException ex) {
+<b class="fc"><i>24</i>&nbsp;        return new GameException(ex);</b>
+<i>25</i>&nbsp;    }
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @ResponseBody
+<i>28</i>&nbsp;    @ExceptionHandler(InvalidMoveException.class)
+<i>29</i>&nbsp;    @ResponseStatus(HttpStatus.BAD_REQUEST)
+<i>30</i>&nbsp;    GameException invalidMoveHandler(InvalidMoveException ex) {
+<b class="fc"><i>31</i>&nbsp;        return new GameException(ex);</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

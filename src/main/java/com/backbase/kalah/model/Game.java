@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Class to represent Kalah Game
  * Same will be used to persist the game into MongoDB
+ *
  * @author Chandra Ranjan
  * @since 05-12-2020
  */
@@ -21,7 +22,7 @@ public class Game {
 
     public Game() {
         this.gameBoard = new Board();
-        this.playerTurn =  Player.PLAYER_ONE;
+        this.playerTurn = Player.PLAYER_ONE;
     }
 
 

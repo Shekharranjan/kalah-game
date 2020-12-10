@@ -55,10 +55,10 @@
 </td>
 </tr>
   <tr>
-    <td class="name">KalahSwagger$$EnhancerBySpringCGLIB$$fc043bca</td>
+    <td class="name">KalahSwagger$$EnhancerBySpringCGLIB$$a24d456e</td>
   </tr>
   <tr>
-    <td class="name">KalahSwagger$$EnhancerBySpringCGLIB$$fc043bca$$FastClassBySpringCGLIB$$27ba1b08</td>
+    <td class="name">KalahSwagger$$EnhancerBySpringCGLIB$$a24d456e$$FastClassBySpringCGLIB$$9ba73eb</td>
   </tr>
   <tr>
     <td class="name">KalahSwagger$$FastClassBySpringCGLIB$$fd26f33f</td>
@@ -100,42 +100,43 @@
 <i>10</i>&nbsp;import springfox.documentation.swagger2.annotations.EnableSwagger2;
 <i>11</i>&nbsp;
 <i>12</i>&nbsp;import java.util.Collections;
-<i>13</i>&nbsp;/**
-<i>14</i>&nbsp; * Configuration class to enable Swagger Documentation for Kalah API
-<i>15</i>&nbsp; *
-<i>16</i>&nbsp; * @author Chandra Ranjan
-<i>17</i>&nbsp; * @since 05-12-2020
-<i>18</i>&nbsp; */
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;@Configuration
-<i>21</i>&nbsp;@EnableSwagger2
-<b class="fc"><i>22</i>&nbsp;public class KalahSwagger {</b>
-<i>23</i>&nbsp;    @Bean
-<i>24</i>&nbsp;    public Docket api() {
-<b class="fc"><i>25</i>&nbsp;        return new Docket(DocumentationType.SWAGGER_2).select()</b>
-<b class="fc"><i>26</i>&nbsp;                .apis(RequestHandlerSelectors.basePackage(&quot;com.backbase.kalah.controller&quot;))</b>
-<b class="fc"><i>27</i>&nbsp;                .paths(PathSelectors.any()).build().apiInfo(getApiInfo());</b>
-<i>28</i>&nbsp;    }
-<i>29</i>&nbsp;
-<i>30</i>&nbsp;    private ApiInfo getApiInfo() {
-<b class="fc"><i>31</i>&nbsp;        return new ApiInfo(</b>
-<i>32</i>&nbsp;                &quot;Backbase Kalah Game&quot;,
-<i>33</i>&nbsp;                &quot;APIs for the creation and play Kalah Game&quot;,
-<i>34</i>&nbsp;                &quot;0.0.1&quot;,
-<i>35</i>&nbsp;                null,
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;/**
+<i>15</i>&nbsp; * Configuration class to enable Swagger Documentation for Kalah API
+<i>16</i>&nbsp; *
+<i>17</i>&nbsp; * @author Chandra Ranjan
+<i>18</i>&nbsp; * @since 05-12-2020
+<i>19</i>&nbsp; */
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;@Configuration
+<i>22</i>&nbsp;@EnableSwagger2
+<b class="fc"><i>23</i>&nbsp;public class KalahSwagger {</b>
+<i>24</i>&nbsp;    @Bean
+<i>25</i>&nbsp;    public Docket api() {
+<b class="fc"><i>26</i>&nbsp;        return new Docket(DocumentationType.SWAGGER_2).select()</b>
+<b class="fc"><i>27</i>&nbsp;                .apis(RequestHandlerSelectors.basePackage(&quot;com.backbase.kalah.controller&quot;))</b>
+<b class="fc"><i>28</i>&nbsp;                .paths(PathSelectors.any()).build().apiInfo(getServiceDetail());</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    private ApiInfo getServiceDetail() {
+<b class="fc"><i>32</i>&nbsp;        return new ApiInfo(</b>
+<i>33</i>&nbsp;                &quot;Backbase Kalah Game&quot;,
+<i>34</i>&nbsp;                &quot;APIs for the creation and play Kalah Game&quot;,
+<i>35</i>&nbsp;                &quot;1.0.0&quot;,
 <i>36</i>&nbsp;                null,
 <i>37</i>&nbsp;                null,
 <i>38</i>&nbsp;                null,
-<b class="fc"><i>39</i>&nbsp;                Collections.emptyList()</b>
-<i>40</i>&nbsp;        );
-<i>41</i>&nbsp;    }
-<i>42</i>&nbsp;}
+<i>39</i>&nbsp;                null,
+<b class="fc"><i>40</i>&nbsp;                Collections.emptyList()</b>
+<i>41</i>&nbsp;        );
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

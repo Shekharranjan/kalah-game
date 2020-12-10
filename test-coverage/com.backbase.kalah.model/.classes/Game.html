@@ -80,69 +80,70 @@
 <i>6</i>&nbsp;/**
 <i>7</i>&nbsp; * Class to represent Kalah Game
 <i>8</i>&nbsp; * Same will be used to persist the game into MongoDB
-<i>9</i>&nbsp; * @author Chandra Ranjan
-<i>10</i>&nbsp; * @since 05-12-2020
-<i>11</i>&nbsp; */
-<i>12</i>&nbsp;
-<i>13</i>&nbsp;@Document
-<i>14</i>&nbsp;public class Game {
-<i>15</i>&nbsp;
-<i>16</i>&nbsp;    @Id
-<i>17</i>&nbsp;    private String id;
-<i>18</i>&nbsp;    private Board gameBoard;
-<i>19</i>&nbsp;    private Player playerTurn;
-<i>20</i>&nbsp;    private Player winner;
-<i>21</i>&nbsp;
-<b class="fc"><i>22</i>&nbsp;    public Game() {</b>
-<b class="fc"><i>23</i>&nbsp;        this.gameBoard = new Board();</b>
-<b class="fc"><i>24</i>&nbsp;        this.playerTurn =  Player.PLAYER_ONE;</b>
-<b class="fc"><i>25</i>&nbsp;    }</b>
-<i>26</i>&nbsp;
+<i>9</i>&nbsp; *
+<i>10</i>&nbsp; * @author Chandra Ranjan
+<i>11</i>&nbsp; * @since 05-12-2020
+<i>12</i>&nbsp; */
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;@Document
+<i>15</i>&nbsp;public class Game {
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    @Id
+<i>18</i>&nbsp;    private String id;
+<i>19</i>&nbsp;    private Board gameBoard;
+<i>20</i>&nbsp;    private Player playerTurn;
+<i>21</i>&nbsp;    private Player winner;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public Game() {</b>
+<b class="fc"><i>24</i>&nbsp;        this.gameBoard = new Board();</b>
+<b class="fc"><i>25</i>&nbsp;        this.playerTurn = Player.PLAYER_ONE;</b>
+<b class="fc"><i>26</i>&nbsp;    }</b>
 <i>27</i>&nbsp;
-<b class="nc"><i>28</i>&nbsp;    public Game(Board gameBoard, Player playerTurn, Player winner) {</b>
-<b class="nc"><i>29</i>&nbsp;        this.gameBoard = gameBoard;</b>
-<b class="nc"><i>30</i>&nbsp;        this.playerTurn = playerTurn;</b>
-<b class="nc"><i>31</i>&nbsp;        this.winner = winner;</b>
-<b class="nc"><i>32</i>&nbsp;    }</b>
-<i>33</i>&nbsp;
-<i>34</i>&nbsp;    public String getId() {
-<b class="fc"><i>35</i>&nbsp;        return id;</b>
-<i>36</i>&nbsp;    }
-<i>37</i>&nbsp;
-<i>38</i>&nbsp;    public void setId(String id) {
-<b class="nc"><i>39</i>&nbsp;        this.id = id;</b>
-<b class="nc"><i>40</i>&nbsp;    }</b>
-<i>41</i>&nbsp;
-<i>42</i>&nbsp;    public Board getGameBoard() {
-<b class="fc"><i>43</i>&nbsp;        return gameBoard;</b>
-<i>44</i>&nbsp;    }
-<i>45</i>&nbsp;
-<i>46</i>&nbsp;    public void setGameBoard(Board gameBoard) {
-<b class="nc"><i>47</i>&nbsp;        this.gameBoard = gameBoard;</b>
-<b class="nc"><i>48</i>&nbsp;    }</b>
-<i>49</i>&nbsp;
-<i>50</i>&nbsp;    public Player getPlayerTurn() {
-<b class="fc"><i>51</i>&nbsp;        return playerTurn;</b>
-<i>52</i>&nbsp;    }
-<i>53</i>&nbsp;
-<i>54</i>&nbsp;    public void setPlayerTurn(Player playerTurn) {
-<b class="fc"><i>55</i>&nbsp;        this.playerTurn = playerTurn;</b>
-<b class="fc"><i>56</i>&nbsp;    }</b>
-<i>57</i>&nbsp;
-<i>58</i>&nbsp;    public Player getWinner() {
-<b class="fc"><i>59</i>&nbsp;        return winner;</b>
-<i>60</i>&nbsp;    }
-<i>61</i>&nbsp;
-<i>62</i>&nbsp;    public void setWinner(Player winner) {
-<b class="nc"><i>63</i>&nbsp;        this.winner = winner;</b>
-<b class="nc"><i>64</i>&nbsp;    }</b>
-<i>65</i>&nbsp;}
+<i>28</i>&nbsp;
+<b class="nc"><i>29</i>&nbsp;    public Game(Board gameBoard, Player playerTurn, Player winner) {</b>
+<b class="nc"><i>30</i>&nbsp;        this.gameBoard = gameBoard;</b>
+<b class="nc"><i>31</i>&nbsp;        this.playerTurn = playerTurn;</b>
+<b class="nc"><i>32</i>&nbsp;        this.winner = winner;</b>
+<b class="nc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public String getId() {
+<b class="fc"><i>36</i>&nbsp;        return id;</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public void setId(String id) {
+<b class="nc"><i>40</i>&nbsp;        this.id = id;</b>
+<b class="nc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    public Board getGameBoard() {
+<b class="fc"><i>44</i>&nbsp;        return gameBoard;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void setGameBoard(Board gameBoard) {
+<b class="nc"><i>48</i>&nbsp;        this.gameBoard = gameBoard;</b>
+<b class="nc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public Player getPlayerTurn() {
+<b class="fc"><i>52</i>&nbsp;        return playerTurn;</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;    public void setPlayerTurn(Player playerTurn) {
+<b class="fc"><i>56</i>&nbsp;        this.playerTurn = playerTurn;</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;    public Player getWinner() {
+<b class="fc"><i>60</i>&nbsp;        return winner;</b>
+<i>61</i>&nbsp;    }
+<i>62</i>&nbsp;
+<i>63</i>&nbsp;    public void setWinner(Player winner) {
+<b class="nc"><i>64</i>&nbsp;        this.winner = winner;</b>
+<b class="nc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

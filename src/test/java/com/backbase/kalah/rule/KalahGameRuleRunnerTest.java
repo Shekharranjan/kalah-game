@@ -21,19 +21,18 @@ class KalahGameRuleRunnerTest {
     KalahService kalahService;
 
 
-
     @Test
     void testPlayerTurn() {
-        Game game  = kalahService.createGame();
-        kalahGameRuleRunner.applyGameRule(game,1);
-        Assert.assertNotNull(game );
+        Game game = kalahService.createGame();
+        kalahGameRuleRunner.applyGameRule(game, 1);
+        Assert.assertNotNull(game);
         Assert.assertEquals(game.getPlayerTurn(), Player.PLAYER_ONE);
     }
 
     @Test
     void testIfLastStoneEndsAtOwnKalahHouse() {
-        Game game  = kalahService.createGame();
-        kalahGameRuleRunner.applyGameRule(game,1);
+        Game game = kalahService.createGame();
+        kalahGameRuleRunner.applyGameRule(game, 1);
         Assert.assertEquals(game.getPlayerTurn(), Player.PLAYER_ONE);
     }
 

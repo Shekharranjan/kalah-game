@@ -1,18 +1,18 @@
 openapi: 3.0.1
 info:
   description: APIs for the creation and play Kalah Game
-  version: 0.0.1
+  version: 1.0.0
   title: Backbase Kalah Game
 servers:
   - url: 'http://localhost:8080'
 tags:
-  - name: kalah-game-controller
-    description: Kalah Game Controller
+  - name: kalah-game-api
+    description: Rest Service API for Kalah Game
 paths:
   /games:
     post:
       tags:
-        - kalah-game-controller
+        - kalah-game-api
       description: Endpoint to create New Kalah Game
       responses:
         '201':
@@ -37,18 +37,18 @@ paths:
   '/games/{gameId}/pits/{pitId}':
     put:
       tags:
-        - kalah-game-controller
+        - kalah-game-api
       description: Endpoint to make move in the game and decide on winner.
       parameters:
         - name: gameId
           in: path
-          description: gameId
+          description: unique game id
           required: true
           schema:
             type: string
         - name: pitId
           in: path
-          description: pitId
+          description: pit number
           required: true
           schema:
             type: integer

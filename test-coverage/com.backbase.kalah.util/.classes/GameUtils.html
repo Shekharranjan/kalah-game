@@ -102,31 +102,32 @@
 <i>28</i>&nbsp;     * Adaptor method to convert Game object to KalahGame Object
 <i>29</i>&nbsp;     *
 <i>30</i>&nbsp;     * @param game current game
-<i>31</i>&nbsp;     * @param uri game url
+<i>31</i>&nbsp;     * @param uri  game url
 <i>32</i>&nbsp;     * @return KalahGame object
 <i>33</i>&nbsp;     */
-<i>34</i>&nbsp;    public KalahGame getKalahGame(Game game, String uri){
+<i>34</i>&nbsp;    public KalahGame getKalahGame(Game game, String uri) {
 <b class="fc"><i>35</i>&nbsp;        Map&lt;Integer, Integer&gt; status = game.getGameBoard().getPits().stream()</b>
 <b class="fc"><i>36</i>&nbsp;                .collect(Collectors.toMap(Pit::getId, Pit::getNoOfStones));</b>
-<b class="fc"><i>37</i>&nbsp;        return new KalahGame(game.getId(),uri, status, game.getPlayerTurn(),game.getWinner());</b>
+<b class="fc"><i>37</i>&nbsp;        return new KalahGame(game.getId(), uri, status, game.getPlayerTurn(), game.getWinner());</b>
 <i>38</i>&nbsp;    }
 <i>39</i>&nbsp;
 <i>40</i>&nbsp;    /**
 <i>41</i>&nbsp;     * Method used to generate game url
-<i>42</i>&nbsp;     * @param gameId game id
-<i>43</i>&nbsp;     * @return game url
-<i>44</i>&nbsp;     */
-<i>45</i>&nbsp;    public String generateGameURL(final String gameId) {
-<b class="fc"><i>46</i>&nbsp;        return String.format(&quot;http://%s:%s/games/%s&quot;, InetAddress.getLoopbackAddress().getHostName(),</b>
-<i>47</i>&nbsp;                port, gameId);
-<i>48</i>&nbsp;    }
-<i>49</i>&nbsp;}
+<i>42</i>&nbsp;     *
+<i>43</i>&nbsp;     * @param gameId game id
+<i>44</i>&nbsp;     * @return game url
+<i>45</i>&nbsp;     */
+<i>46</i>&nbsp;    public String generateGameURL(final String gameId) {
+<b class="fc"><i>47</i>&nbsp;        return String.format(&quot;http://%s:%s/games/%s&quot;, InetAddress.getLoopbackAddress().getHostName(),</b>
+<i>48</i>&nbsp;                port, gameId);
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

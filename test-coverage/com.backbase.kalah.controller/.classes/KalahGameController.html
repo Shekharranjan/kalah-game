@@ -101,8 +101,8 @@
 <b class="fc"><i>27</i>&nbsp;@Slf4j</b>
 <i>28</i>&nbsp;@RestController
 <b class="fc"><i>29</i>&nbsp;public class KalahGameController {</b>
-<b class="fc"><i>30</i>&nbsp;    private  final String URI_GAME = &quot;/games&quot;;</b>
-<b class="fc"><i>31</i>&nbsp;    private  final String URI_GAME_MOVE = URI_GAME + &quot;/{gameId}/pits/{pitId}&quot;;</b>
+<b class="fc"><i>30</i>&nbsp;    private final String URI_GAME = &quot;/games&quot;;</b>
+<b class="fc"><i>31</i>&nbsp;    private final String URI_GAME_MOVE = URI_GAME + &quot;/{gameId}/pits/{pitId}&quot;;</b>
 <i>32</i>&nbsp;
 <i>33</i>&nbsp;    @Autowired
 <i>34</i>&nbsp;    KalahService kalahService;
@@ -112,40 +112,41 @@
 <i>38</i>&nbsp;
 <i>39</i>&nbsp;    /**
 <i>40</i>&nbsp;     * This method will create a new Kalah Game
-<i>41</i>&nbsp;     * @return the kalah game board
-<i>42</i>&nbsp;     */
-<i>43</i>&nbsp;    @PostMapping(URI_GAME)
-<i>44</i>&nbsp;    @ApiOperation(value = &quot;Endpoint to create New Kalah Game&quot;,consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
-<i>45</i>&nbsp;            response = KalahGame.class, httpMethod = &quot;POST&quot;)
-<i>46</i>&nbsp;    public ResponseEntity&lt;KalahGame&gt; createGame(){
-<b class="fc"><i>47</i>&nbsp;        log.info(&quot;Creating New Kalah Game... &quot;);</b>
-<b class="fc"><i>48</i>&nbsp;        Game newGame = kalahService.createGame();</b>
-<b class="fc"><i>49</i>&nbsp;        log.info(&quot;New Kalah Game - {} created ... &quot;, newGame.getId());</b>
-<b class="fc"><i>50</i>&nbsp;        return ResponseEntity.status(HttpStatus.CREATED).body(gameUtils.getKalahGame(newGame,gameUtils.generateGameURL(newGame.getId())));</b>
-<i>51</i>&nbsp;    }
-<i>52</i>&nbsp;
-<i>53</i>&nbsp;    /**
-<i>54</i>&nbsp;     * Moves the stones from selected pit to other pits as per game rule
-<i>55</i>&nbsp;     *
-<i>56</i>&nbsp;     * @param pitId  pit id selected by the player
-<i>57</i>&nbsp;     * @param gameId game id for which want to make move
-<i>58</i>&nbsp;     * @return the kalah game
-<i>59</i>&nbsp;     */
-<i>60</i>&nbsp;    @PutMapping(URI_GAME_MOVE)
-<i>61</i>&nbsp;    @ApiOperation(value = &quot;Endpoint to make move in the game and decide on winner.&quot;,consumes = MediaType.APPLICATION_JSON_VALUE,
-<i>62</i>&nbsp;            produces = MediaType.APPLICATION_JSON_VALUE, response = KalahGame.class, httpMethod = &quot;PUT&quot;)
-<i>63</i>&nbsp;    public ResponseEntity&lt;KalahGame&gt; makeMove(@PathVariable final String gameId, @PathVariable final Integer pitId) {
-<b class="fc"><i>64</i>&nbsp;        log.debug(&quot;Making move for gameId {} and pitId {}&quot;,gameId,pitId);</b>
-<b class="fc"><i>65</i>&nbsp;        Game game  =  kalahService.makeMove(gameId,pitId);</b>
-<b class="fc"><i>66</i>&nbsp;        return ResponseEntity.status(HttpStatus.OK).body(gameUtils.getKalahGame(game,gameUtils.generateGameURL(game.getId())));</b>
-<i>67</i>&nbsp;    }
-<i>68</i>&nbsp;}
+<i>41</i>&nbsp;     *
+<i>42</i>&nbsp;     * @return the kalah game board
+<i>43</i>&nbsp;     */
+<i>44</i>&nbsp;    @PostMapping(URI_GAME)
+<i>45</i>&nbsp;    @ApiOperation(value = &quot;Endpoint to create New Kalah Game&quot;, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE,
+<i>46</i>&nbsp;            response = KalahGame.class, httpMethod = &quot;POST&quot;)
+<i>47</i>&nbsp;    public ResponseEntity&lt;KalahGame&gt; createGame() {
+<b class="fc"><i>48</i>&nbsp;        log.info(&quot;Creating New Kalah Game... &quot;);</b>
+<b class="fc"><i>49</i>&nbsp;        Game newGame = kalahService.createGame();</b>
+<b class="fc"><i>50</i>&nbsp;        log.info(&quot;New Kalah Game - {} created ... &quot;, newGame.getId());</b>
+<b class="fc"><i>51</i>&nbsp;        return ResponseEntity.status(HttpStatus.CREATED).body(gameUtils.getKalahGame(newGame, gameUtils.generateGameURL(newGame.getId())));</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Moves the stones from selected pit to other pits as per game rule
+<i>56</i>&nbsp;     *
+<i>57</i>&nbsp;     * @param pitId  pit id selected by the player
+<i>58</i>&nbsp;     * @param gameId game id for which want to make move
+<i>59</i>&nbsp;     * @return the kalah game
+<i>60</i>&nbsp;     */
+<i>61</i>&nbsp;    @PutMapping(URI_GAME_MOVE)
+<i>62</i>&nbsp;    @ApiOperation(value = &quot;Endpoint to make move in the game and decide on winner.&quot;, consumes = MediaType.APPLICATION_JSON_VALUE,
+<i>63</i>&nbsp;            produces = MediaType.APPLICATION_JSON_VALUE, response = KalahGame.class, httpMethod = &quot;PUT&quot;)
+<i>64</i>&nbsp;    public ResponseEntity&lt;KalahGame&gt; makeMove(@PathVariable final String gameId, @PathVariable final Integer pitId) {
+<b class="fc"><i>65</i>&nbsp;        log.debug(&quot;Making move for gameId {} and pitId {}&quot;, gameId, pitId);</b>
+<b class="fc"><i>66</i>&nbsp;        Game game = kalahService.makeMove(gameId, pitId);</b>
+<b class="fc"><i>67</i>&nbsp;        return ResponseEntity.status(HttpStatus.OK).body(gameUtils.getKalahGame(game, gameUtils.generateGameURL(game.getId())));</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>

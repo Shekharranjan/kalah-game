@@ -15,16 +15,16 @@ public interface KalahService {
      *
      * @return new Kalah Game
      */
-    public Game createGame();
+    Game createGame();
 
     /**
      * Method to play Kalah Game
      *
      * @param gameId current game id
-     * @param pitId pit number to start the move
+     * @param pitId  pit number to start the move
      * @return current Kalah Game with latest status
      */
-    public Game makeMove(final String gameId, final Integer pitId);
+    Game makeMove(final String gameId, final Integer pitId);
 
     /**
      * Method to load Game from Database
@@ -32,5 +32,5 @@ public interface KalahService {
      * @param gameId current game id
      * @return current Game
      */
-    public Game loadGame(final String gameId);
+    Game loadGame(final String gameId);
 }

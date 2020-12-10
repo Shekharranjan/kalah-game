@@ -14,14 +14,15 @@ public class Pit {
     private int id;
     private int noOfStones;
 
-    public Pit(){
+    public Pit() {
     }
 
     public Pit(int id) {
         this.id = id;
-        if(!this.isKalahHouse())
+        if (!this.isKalahHouse())
             this.noOfStones = 6;
     }
+
     public Pit(int id, int noOfStones) {
         this.id = id;
         this.noOfStones = noOfStones;
@@ -32,8 +33,8 @@ public class Pit {
      *
      * @return true if its a Kalah House else false
      */
-    public boolean isKalahHouse(){
-        return (this.getId()== Constants.PLAYER1_KALAH_HOUSE_PIT_ID) || (this.getId()== Constants.PLAYER2_KALAH_HOUSE_PIT_ID);
+    public boolean isKalahHouse() {
+        return (this.getId() == Constants.PLAYER1_KALAH_HOUSE_PIT_ID) || (this.getId() == Constants.PLAYER2_KALAH_HOUSE_PIT_ID);
     }
 
     /**
@@ -41,11 +42,11 @@ public class Pit {
      *
      * @return Pit's Owner
      */
-    public Player getOwner(){
-        if(this.getId()<=Constants.PLAYER1_KALAH_HOUSE_PIT_ID)
+    public Player getOwner() {
+        if (this.getId() <= Constants.PLAYER1_KALAH_HOUSE_PIT_ID)
             return Player.PLAYER_ONE;
         else
-            return  Player.PLAYER_TWO;
+            return Player.PLAYER_TWO;
     }
 
     public int getId() {

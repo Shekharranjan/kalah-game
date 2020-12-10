@@ -101,8 +101,8 @@
 <b class="nc"><i>27</i>&nbsp;        this.pits = pits;</b>
 <b class="nc"><i>28</i>&nbsp;    }</b>
 <i>29</i>&nbsp;
-<i>30</i>&nbsp;    public Pit getPit(final int index) {
-<b class="fc"><i>31</i>&nbsp;        return this.pits.get((index - 1) % Constants.LAST_PIT_ID);</b>
+<i>30</i>&nbsp;    public Pit getPit(int pitIndex) {
+<b class="fc"><i>31</i>&nbsp;        return this.pits.get((pitIndex - 1) % Constants.LAST_PIT_ID);</b>
 <i>32</i>&nbsp;    }
 <i>33</i>&nbsp;
 <i>34</i>&nbsp;    public List&lt;Pit&gt; getPits() {
@@ -113,19 +113,25 @@
 <b class="nc"><i>39</i>&nbsp;        this.pits = pits;</b>
 <b class="nc"><i>40</i>&nbsp;    }</b>
 <i>41</i>&nbsp;
-<i>42</i>&nbsp;    public int getPlayerPitsStones(Player player) {
-<b class="fc"><i>43</i>&nbsp;        return this.getPits().stream()</b>
-<b class="fc"><i>44</i>&nbsp;                .filter(pit -&gt; (pit.getOwner().equals(player)))</b>
-<b class="fc"><i>45</i>&nbsp;                .filter(pit-&gt;!pit.isKalahHouse())</b>
-<b class="fc"><i>46</i>&nbsp;                .mapToInt(Pit::getNoOfStones).sum();</b>
-<i>47</i>&nbsp;    }
-<i>48</i>&nbsp;}
+<i>42</i>&nbsp;    /**
+<i>43</i>&nbsp;     * Method to get total number of stones in player&#39;s pit
+<i>44</i>&nbsp;     *
+<i>45</i>&nbsp;     * @param player current Player
+<i>46</i>&nbsp;     * @return total number of stones in his pit
+<i>47</i>&nbsp;     */
+<i>48</i>&nbsp;    public int getPlayerPitsStones(Player player) {
+<b class="fc"><i>49</i>&nbsp;        return this.getPits().stream()</b>
+<b class="fc"><i>50</i>&nbsp;                .filter(pit -&gt; (pit.getOwner().equals(player)))</b>
+<b class="fc"><i>51</i>&nbsp;                .filter(pit -&gt; !pit.isKalahHouse())</b>
+<b class="fc"><i>52</i>&nbsp;                .mapToInt(Pit::getNoOfStones).sum();</b>
+<i>53</i>&nbsp;    }
+<i>54</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-12-08 17:48</div>
+    <div style="float:right;">generated on 2020-12-09 14:50</div>
 </div>
 </body>
 </html>
